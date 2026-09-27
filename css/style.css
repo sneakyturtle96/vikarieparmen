@@ -1,0 +1,1617 @@
+/* ---------- Grund ---------- */
+
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --text: #1a1d23;
+  --text-soft: #5a6270;
+  --border: #e3e6eb;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-soft: #eff4ff;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] {
+  --bg: #0f1116;
+  --surface: #171a21;
+  --text: #eef1f6;
+  --text-soft: #9aa3b2;
+  --border: #262b35;
+  --accent: #5b8cff;
+  --accent-hover: #7ba3ff;
+  --accent-soft: #1a2440;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+.site-header,
+.feature-card,
+.tool-card,
+.btn-secondary,
+.theme-toggle,
+.cta {
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.1rem; }
+
+p { color: var(--text-soft); }
+
+.lead {
+  font-size: 1.15rem;
+  max-width: 640px;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.logo::before {
+  content: "◆";
+  color: var(--accent);
+  margin-right: 8px;
+}
+
+.main-nav {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.main-nav a {
+  color: var(--text-soft);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.main-nav a:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.main-nav a.active {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* ---------- Temaväxlare ---------- */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-soft);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.theme-toggle:hover {
+  background: var(--bg);
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.theme-toggle span {
+  display: none;
+}
+
+[data-theme="light"] .theme-toggle .icon-sun,
+:root:not([data-theme="dark"]) .theme-toggle .icon-sun {
+  display: inline;
+}
+
+[data-theme="dark"] .theme-toggle .icon-moon {
+  display: inline;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding: 80px 0 64px;
+}
+
+.hero h1 {
+  max-width: 720px;
+  margin-bottom: 20px;
+}
+
+.hero .lead {
+  margin-bottom: 32px;
+}
+
+/* ---------- Knappar ---------- */
+
+.btn {
+  display: inline-block;
+  padding: 13px 26px;
+  border-radius: 10px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.1s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--accent);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+/* ---------- Features ---------- */
+
+.features {
+  padding: 24px 0 64px;
+}
+
+.features h2 {
+  margin-bottom: 32px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07), 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.feature-card h3 {
+  margin-bottom: 8px;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+}
+
+/* ---------- CTA ---------- */
+
+.cta {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 64px 0;
+  text-align: center;
+}
+
+.cta h2 {
+  margin-bottom: 12px;
+}
+
+.cta p {
+  max-width: 520px;
+  margin: 0 auto 28px;
+}
+
+/* ---------- Sidintro ---------- */
+
+.page-intro {
+  padding: 64px 0 40px;
+}
+
+.page-intro h1 {
+  margin-bottom: 12px;
+}
+
+/* ---------- Brödsmulor ---------- */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--text-soft);
+  margin-bottom: 12px;
+}
+
+.breadcrumb a {
+  color: var(--text-soft);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.breadcrumb span[aria-hidden="true"] {
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.breadcrumb span:last-child {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ---------- Årskursväljare ---------- */
+
+.grade-picker {
+  padding: 8px 0 80px;
+}
+
+.select-input {
+  width: 100%;
+  max-width: 320px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.select-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.grade-message {
+  margin-top: 24px;
+  padding: 16px 20px;
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.grade-options {
+  margin-top: 32px;
+}
+
+.grade-options h2 {
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.tool-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.tool-card-link {
+  align-self: flex-start;
+  margin-top: 6px;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+}
+
+/* ---------- Verktygspanel ---------- */
+
+.tool-panel {
+  padding: 8px 0 32px;
+}
+
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  font-weight: 500;
+}
+
+.field input[type="number"] {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.98rem;
+  font-family: inherit;
+}
+
+.field input[type="number"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.field-label-with-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.info-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--text-soft);
+  background: transparent;
+  color: var(--text-soft);
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: help;
+  position: relative;
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+.info-circle:hover,
+.info-circle:focus {
+  border-color: var(--accent);
+  color: var(--accent);
+  outline: none;
+}
+
+.info-circle::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: var(--surface);
+  font-size: 0.78rem;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-style: normal;
+  line-height: 1.4;
+  padding: 8px 12px;
+  border-radius: 8px;
+  width: 240px;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.info-circle:hover::after,
+.info-circle:focus::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.range-pair {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.range-pair span {
+  color: var(--text-soft);
+}
+
+.checkbox-field {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  align-self: end;
+  padding-bottom: 9px;
+}
+
+.checkbox-field input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+.panel-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Talsortspanel ---------- */
+
+.place-values-panel {
+  margin-top: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow);
+}
+
+.place-values-header {
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.clear-button {
+  padding: 5px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.clear-button:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.place-values-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px 16px;
+}
+
+.place-value-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.place-value-checkbox input {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* ---------- Utskriftsblad ---------- */
+
+.worksheet {
+  padding: 8px 0 80px;
+}
+
+.worksheet .container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  box-shadow: var(--shadow);
+}
+
+.worksheet-header {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.ws-line {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.ws-line-short {
+  flex: 0 0 auto;
+  min-width: 140px;
+}
+
+.ws-label {
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.ws-underline {
+  flex: 1;
+  border-bottom: 1.5px solid var(--text);
+  height: 1.2em;
+}
+
+.ws-underline-short {
+  min-width: 70px;
+  flex: 0 0 70px;
+}
+
+.worksheet-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ---------- Uppgiftslista ---------- */
+
+.problem-list {
+  list-style: none;
+}
+
+/* ---------- Tvåkolumnslayout för uppgifter ---------- */
+
+.problem-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 40px;
+  align-items: start;
+}
+
+.problem-column {
+  list-style: decimal;
+  list-style-position: outside;
+  padding-left: 28px;
+  margin: 0;
+}
+
+.problem-column > li {
+  padding-left: 8px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* ---------- Kort division (bråk) ---------- */
+
+.problem-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.fraction {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.1;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.fraction-numerator {
+  display: inline-flex;
+  gap: 0;
+  align-items: flex-end;
+  padding: 0 4px;
+}
+
+.fraction-bar {
+  display: block;
+  width: 100%;
+  min-width: 40px;
+  border-top: 2px solid currentColor;
+  margin: 2px 0;
+}
+
+.fraction-denominator {
+  padding: 0 6px;
+}
+
+.fraction-equals {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.fraction-answer {
+  display: inline-block;
+  min-width: 70px;
+  border-bottom: 1.5px solid var(--text);
+  height: 1.4em;
+}
+
+.num-cell {
+  position: relative;
+  display: inline-block;
+  padding: 0 1px;
+}
+
+.num-digit {
+  display: inline-block;
+  padding: 2px 4px;
+  position: relative;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  line-height: 1.1;
+}
+
+.num-digit.is-struck::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: 50%;
+  height: 1.5px;
+  background: var(--text-soft);
+  transform: rotate(-18deg);
+  pointer-events: none;
+}
+
+.num-rest-slot {
+  position: relative;
+  display: inline-block;
+  width: 6px;
+  height: 1em;
+  vertical-align: bottom;
+}
+
+.num-rest {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-12deg);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.num-group {
+  display: inline-flex;
+  align-items: flex-end;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  padding: 3px 8px;
+  margin: 0 1px;
+  position: relative;
+}
+
+.num-group:has(.num-rest) {
+  padding-top: 12px;
+  margin-top: -10px;
+}
+
+.fraction-denominator.is-circled {
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  padding: 2px 6px;
+  margin: 1px auto 0;
+}
+
+/* ---------- Svarsblad ---------- */
+
+.problem-list.answers-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.answer-item {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  padding-bottom: 12px;
+}
+
+.answer-heading {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.answer-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.answer-step-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  padding: 2px 0;
+  flex-wrap: wrap;
+}
+
+.answer-step-label {
+  flex: 0 0 auto;
+  font-weight: 600;
+  color: var(--text-soft);
+  font-size: 0.82rem;
+  min-width: 52px;
+}
+
+.answer-step-label.is-solution {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.answer-step-equals {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.95rem;
+  margin-left: 4px;
+}
+
+.answer-step-result {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 1rem;
+  min-width: 24px;
+}
+
+.answer-step-explanation {
+  color: var(--text-soft);
+  font-size: 0.8rem;
+  flex: 1 1 100%;
+  padding-left: 62px;
+  margin-top: -2px;
+}
+
+/* ---------- Uppställning ---------- */
+
+.vertical-problem {
+  display: inline-block;
+}
+
+.vertical-table {
+  display: inline-flex;
+  flex-direction: column;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.vertical-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: relative;
+  min-height: 1.5em;
+}
+
+.vertical-row-carry {
+  min-height: 1.2em;
+  align-items: flex-end;
+}
+
+.vertical-cell {
+  display: inline-block;
+  min-width: 1.1em;
+  text-align: center;
+  padding: 1px 3px;
+  position: relative;
+}
+
+.vertical-cell-sign {
+  min-width: 1.4em;
+  text-align: right;
+  padding-right: 8px;
+  color: var(--text);
+}
+
+.vertical-cell-empty {
+  color: transparent;
+}
+
+.vertical-cell-comma {
+  min-width: 0.5em;
+  text-align: center;
+  padding: 1px 1px;
+  color: var(--text);
+}
+
+.vertical-cell-comma-gap {
+  min-width: 0.5em;
+  padding: 1px 1px;
+}
+
+.carry-mark {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent);
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.vertical-row-line {
+  border-bottom: 2px solid var(--text);
+  min-height: 0.6em;
+  padding-bottom: 0;
+}
+
+.vertical-row-sum {
+  font-weight: 700;
+}
+
+.vertical-problem-item {
+  counter-increment: problem;
+  position: relative;
+  padding-bottom: 16px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.vertical-problem-inner {
+  display: inline-block;
+}
+
+/* ---------- Låne-markeringar för subtraktion ---------- */
+
+.vertical-row-borrow {
+  min-height: 1.6em;
+  align-items: flex-end;
+}
+
+.vertical-cell-borrow {
+  position: relative;
+  min-width: 1.1em;
+}
+
+.borrow-struck {
+  display: inline-block;
+  position: relative;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+.borrow-struck::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: 50%;
+  height: 1.5px;
+  background: var(--text-soft);
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+.borrow-mark {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ---------- Svarsblad för uppställning ---------- */
+
+.answer-reminder {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  padding: 14px 20px;
+  font-size: 0.92rem;
+  color: var(--text);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.vertical-answer-item {
+  padding-bottom: 32px;
+  margin-bottom: 16px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.addition-steps {
+  margin-top: 18px;
+}
+
+.addition-steps .answer-step-row {
+  font-size: 0.85rem;
+  padding: 2px 0;
+  margin-bottom: 3px;
+}
+
+.addition-steps .answer-step-label {
+  font-size: 0.78rem;
+  min-width: 56px;
+}
+
+.addition-steps .answer-step-explanation {
+  flex: 1 1 100%;
+  padding-left: 0;
+  margin-top: 0;
+}
+
+/* ---------- Skrivuppgifter ---------- */
+
+.assignment-area {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.assignment-title {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.assignment-prompt {
+  font-size: 1.05rem;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+
+.assignment-subheading {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.assignment-structure,
+.assignment-tips {
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
+
+.assignment-structure li,
+.assignment-tips li {
+  margin-bottom: 6px;
+  color: var(--text-soft);
+}
+
+.assignment-meta {
+  margin-top: 24px;
+  font-style: italic;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+/* ---------- Rättningsmall ---------- */
+
+.key-area {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 2px solid var(--accent);
+}
+
+.key-title {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: var(--accent);
+}
+
+.key-note {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.key-dimension {
+  margin-bottom: 20px;
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 14px 18px;
+}
+
+.key-dimension-name {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.key-levels {
+  padding-left: 22px;
+  margin: 0;
+}
+
+.key-levels li {
+  margin-bottom: 5px;
+  font-size: 0.92rem;
+  color: var(--text-soft);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  text-align: center;
+}
+
+.site-footer p {
+  font-size: 0.88rem;
+  color: var(--text-soft);
+}
+
+/* ---------- Responsivt ---------- */
+
+@media (max-width: 640px) {
+  h1 { font-size: 1.9rem; }
+  h2 { font-size: 1.35rem; }
+  .hero { padding: 48px 0 40px; }
+  .header-inner { height: 56px; }
+  .main-nav a { padding: 5px 8px; font-size: 0.82rem; }
+  .worksheet .container { padding: 24px; }
+  .problem-columns { grid-template-columns: 1fr; gap: 0; }
+  .problem-column { padding-left: 24px; }
+}
+/* ---------- Svåra ord ---------- */
+
+.text-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.98rem;
+  font-family: inherit;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 180px;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.result-area {
+  font-size: 1rem;
+}
+
+.result-placeholder {
+  color: var(--text-soft);
+  font-style: italic;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.result-summary {
+  margin-bottom: 24px;
+}
+
+.result-summary h2 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.result-stats {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+}
+
+.svar-ord-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.svar-ord-rad {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: var(--bg);
+  font-size: 0.95rem;
+}
+
+.svar-ord-text {
+  font-weight: 600;
+  color: var(--text);
+  min-width: 140px;
+}
+
+.svar-ord-antal {
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  min-width: 32px;
+}
+
+.svar-ord-knapp {
+  padding: 3px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.svar-ord-knapp:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.svar-ord-markering {
+  font-size: 0.78rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.result-info {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  font-style: italic;
+}
+/* ---------- Glosor ---------- */
+
+.glosa-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 1.05rem;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.glosa-num {
+  flex: 0 0 36px;
+  font-weight: 600;
+  color: var(--text-soft);
+  text-align: right;
+}
+
+.glosa-fraga {
+  flex: 0 0 auto;
+  font-weight: 600;
+  color: var(--text);
+  min-width: 110px;
+}
+
+.glosa-line {
+  flex: 1 1 auto;
+  border-bottom: 1.5px solid var(--text);
+  height: 1.2em;
+  margin-left: 8px;
+}
+
+.problem-list:not(.answers-mode) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 6px 32px;
+}
+
+/* Svarsbladet */
+
+.problem-list.answers-mode {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 32px;
+}
+
+.glosa-answer-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 4px 0;
+  font-size: 1rem;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.glosa-arrow {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+}
+
+.glosa-svar {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* Utskrift */
+@media print {
+  .text-input,
+  .result-placeholder,
+  .result-info,
+  .svar-ord-knapp {
+    display: none !important;
+  }
+
+  .svar-ord-rad {
+    background: #f2f2f2;
+    break-inside: avoid;
+  }
+}
+/* ---------- Utskrift ---------- */
+
+@media print {
+  .no-print,
+  .site-header,
+  .site-footer,
+  .tool-panel,
+  .page-intro,
+  .breadcrumb,
+  .place-values-panel {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+
+  .worksheet {
+    padding: 0;
+  }
+
+  .worksheet .container {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .worksheet-header {
+    margin-bottom: 16px;
+  }
+
+  .worksheet-title {
+    font-size: 1.15rem;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+  }
+
+  /* Två kolumner för uppgifter */
+  .problem-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 32px;
+    align-items: start;
+  }
+
+  .problem-column {
+    list-style: decimal;
+    list-style-position: outside;
+    padding-left: 24px;
+    margin: 0;
+  }
+
+  .problem-column > li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding-bottom: 24px;
+  }
+
+  /* Kort division */
+  .problem {
+    font-size: 1.15rem;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .vertical-problem-item {
+    display: block;
+    font-size: 1rem;
+  }
+
+  /* Svarsbladet */
+  .problem-list.answers-mode {
+    display: block;
+  }
+
+  .answer-reminder {
+    background: #f2f2f2;
+    border-left-color: #000;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    padding: 10px 14px;
+    break-inside: avoid;
+  }
+
+  .vertical-answer-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding-bottom: 20px;
+    margin-bottom: 0;
+  }
+
+  .answer-heading {
+    font-size: 0.82rem;
+    margin-bottom: 5px;
+  }
+
+  .answer-steps {
+    gap: 3px;
+  }
+
+  .addition-steps {
+    margin-top: 10px;
+  }
+
+  .addition-steps .answer-step-row {
+    font-size: 0.72rem;
+    margin-bottom: 2px;
+  }
+
+  .addition-steps .answer-step-label {
+    font-size: 0.68rem;
+  }
+
+  .addition-steps .answer-step-explanation {
+    font-size: 0.72rem;
+  }
+
+  /* Uppställningens tabell */
+  .vertical-table {
+    font-size: 1rem;
+  }
+
+  .vertical-cell {
+    padding: 0 2px;
+  }
+
+  .carry-mark {
+    color: #000;
+    font-size: 0.62rem;
+    top: -9px;
+  }
+
+  .vertical-row-line {
+    border-bottom-color: #000;
+  }
+
+  .vertical-row-borrow {
+    min-height: 1.4em;
+  }
+
+  .borrow-struck {
+    font-size: 0.85rem;
+  }
+
+  .borrow-struck::after {
+    background: #000;
+  }
+
+  .borrow-mark {
+    font-size: 0.62rem;
+    color: #000;
+    top: -10px;
+  }
+
+  /* Bråk (kort division) */
+  .fraction-answer,
+  .ws-underline {
+    border-bottom-color: #000;
+  }
+
+  .num-digit {
+    padding: 1px 2px;
+    border-width: 1px;
+  }
+
+  .num-digit.is-circled {
+    border-color: #000;
+  }
+
+  .num-digit.is-struck::after {
+    background: #000;
+  }
+
+  .num-rest {
+    top: -10px;
+    font-size: 0.62rem;
+    color: #000;
+  }
+
+  .num-rest-slot {
+    width: 5px;
+  }
+
+  .num-group {
+    border-color: #000;
+    border-width: 1px;
+    padding: 2px 5px;
+  }
+
+  .num-group:has(.num-rest) {
+    padding-top: 10px;
+    margin-top: -8px;
+  }
+
+  .fraction-denominator.is-circled {
+    border-color: #000;
+    padding: 1px 4px;
+  }
+
+  /* Skrivuppgifter */
+  .key-area {
+    margin-top: 24px;
+    padding-top: 16px;
+  }
+
+  .key-title {
+    font-size: 1.1rem;
+  }
+
+  .key-dimension {
+    background: #f2f2f2;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    break-inside: avoid;
+  }
+
+  .key-levels li {
+    font-size: 0.82rem;
+  }
+    .glosa-item {
+    font-size: 1rem;
+    padding: 4px 0;
+  }
+
+  .problem-list:not(.answers-mode) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px 28px;
+  }
+
+  .problem-list.answers-mode {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px 28px;
+  }
+
+  .glosa-answer-item {
+    font-size: 0.88rem;
+    padding: 2px 0;
+  }
+
+  .glosa-line {
+    border-bottom-color: #000;
+  }
+
+  .glosa-svar {
+    color: #000;
+  }
+}
