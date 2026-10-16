@@ -693,6 +693,17 @@ p { color: var(--text-soft); }
   page-break-inside: avoid;
 }
 
+/* ---------- Problem-spacer (tomma rader med innehåll) ---------- */
+
+.problem-spacer {
+  height: 1.5em;
+  line-height: 1.5em;
+  font-size: 1rem;
+  color: transparent;
+  user-select: none;
+  pointer-events: none;
+}
+
 /* ---------- Kort division (bråk) ---------- */
 
 .problem-row {
@@ -1287,27 +1298,21 @@ p { color: var(--text-soft); }
     padding-bottom: 8px;
   }
 
-  /* Två kolumner för uppgifter — flex istället för grid för att undvika
-     att margin/padding kollapsar mellan rader. */
+  /* Två kolumner för uppgifter */
   .problem-columns {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 0 32px;
-    align-items: flex-start;
+    align-items: start;
   }
 
   .problem-column {
-    flex: 1 1 50%;
     list-style: decimal;
     list-style-position: outside;
     padding-left: 24px;
     margin: 0;
-    display: flex;
-    flex-direction: column;
   }
 
-  /* Nollställ alla marginaler och padding på uppgiftsraderna så att
-     avståndet styrs helt av ::after-blocket nedan. */
   .problem-column > li {
     margin: 0;
     padding: 0;
@@ -1317,18 +1322,14 @@ p { color: var(--text-soft); }
     display: block;
   }
 
-  /* Skapa det faktiska tomma utrymmet efter varje uppgift.
-     Ett tomt block kan inte kollapsa och klipps inte bort vid
-     kolumnbrytning på samma sätt som margin-bottom. */
-  .problem-column > li::after {
-    content: "";
-    display: block;
-    height: 100px;
-  }
-
-  /* Sista uppgiften behöver inte extra utrymme under sig */
-  .problem-column > li:last-child::after {
-    height: 0;
+  /* Tomma rader med faktiskt innehåll. Webbläsaren kan inte klippa
+     bort element som innehåller text, även om texten är osynlig. */
+  .problem-spacer {
+    height: 1.5em;
+    line-height: 1.5em;
+    font-size: 1rem;
+    color: transparent;
+    overflow: visible !important;
   }
 
   /* Kort division */
