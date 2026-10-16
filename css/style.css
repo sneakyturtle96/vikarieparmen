@@ -1423,7 +1423,7 @@ p { color: var(--text-soft); }
   .problem-column > li {
     break-inside: avoid;
     page-break-inside: avoid;
-    padding-bottom: 100px;
+    padding-bottom: 250px;
   }
 
   /* Kort division */
