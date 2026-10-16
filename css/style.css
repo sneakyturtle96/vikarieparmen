@@ -1154,135 +1154,6 @@ p { color: var(--text-soft); }
   color: var(--text-soft);
 }
 
-/* ---------- Footer ---------- */
-
-.site-footer {
-  border-top: 1px solid var(--border);
-  padding: 28px 0;
-  text-align: center;
-}
-
-.site-footer p {
-  font-size: 0.88rem;
-  color: var(--text-soft);
-}
-
-/* ---------- Responsivt ---------- */
-
-@media (max-width: 640px) {
-  h1 { font-size: 1.9rem; }
-  h2 { font-size: 1.35rem; }
-  .hero { padding: 48px 0 40px; }
-  .header-inner { height: 56px; }
-  .main-nav a { padding: 5px 8px; font-size: 0.82rem; }
-  .worksheet .container { padding: 24px; }
-  .problem-columns { grid-template-columns: 1fr; gap: 0; }
-  .problem-column { padding-left: 24px; }
-}
-/* ---------- Svåra ord ---------- */
-
-.text-input {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--bg);
-  color: var(--text);
-  font-size: 0.98rem;
-  font-family: inherit;
-  line-height: 1.5;
-  resize: vertical;
-  min-height: 180px;
-}
-
-.text-input:focus {
-  outline: none;
-  border-color: var(--accent);
-  background: var(--surface);
-}
-
-.result-area {
-  font-size: 1rem;
-}
-
-.result-placeholder {
-  color: var(--text-soft);
-  font-style: italic;
-  text-align: center;
-  padding: 40px 0;
-}
-
-.result-summary {
-  margin-bottom: 24px;
-}
-
-.result-summary h2 {
-  font-size: 1.3rem;
-  margin-bottom: 8px;
-}
-
-.result-stats {
-  font-size: 0.95rem;
-  color: var(--text-soft);
-}
-
-.svar-ord-lista {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 24px;
-}
-
-.svar-ord-rad {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  background: var(--bg);
-  font-size: 0.95rem;
-}
-
-.svar-ord-text {
-  font-weight: 600;
-  color: var(--text);
-  min-width: 140px;
-}
-
-.svar-ord-antal {
-  color: var(--text-soft);
-  font-size: 0.85rem;
-  min-width: 32px;
-}
-
-.svar-ord-knapp {
-  padding: 3px 10px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  background: var(--surface);
-  color: var(--text-soft);
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
-}
-
-.svar-ord-knapp:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.svar-ord-markering {
-  font-size: 0.78rem;
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.result-info {
-  font-size: 0.85rem;
-  color: var(--text-soft);
-  font-style: italic;
-}
 /* ---------- Glosor ---------- */
 
 .glosa-item {
@@ -1322,8 +1193,6 @@ p { color: var(--text-soft); }
   gap: 6px 32px;
 }
 
-/* Svarsbladet */
-
 .problem-list.answers-mode {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1350,23 +1219,36 @@ p { color: var(--text-soft); }
   color: var(--accent);
 }
 
-/* Utskrift */
-@media print {
-  .text-input,
-  .result-placeholder,
-  .result-info,
-  .svar-ord-knapp {
-    display: none !important;
-  }
+/* ---------- Footer ---------- */
 
-  .svar-ord-rad {
-    background: #f2f2f2;
-    break-inside: avoid;
-  }
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  text-align: center;
 }
+
+.site-footer p {
+  font-size: 0.88rem;
+  color: var(--text-soft);
+}
+
+/* ---------- Responsivt ---------- */
+
+@media (max-width: 640px) {
+  h1 { font-size: 1.9rem; }
+  h2 { font-size: 1.35rem; }
+  .hero { padding: 48px 0 40px; }
+  .header-inner { height: 56px; }
+  .main-nav a { padding: 5px 8px; font-size: 0.82rem; }
+  .worksheet .container { padding: 24px; }
+  .problem-columns { grid-template-columns: 1fr; gap: 0; }
+  .problem-column { padding-left: 24px; }
+}
+
 /* ---------- Utskrift ---------- */
 
 @media print {
+  /* Dölj allt som inte ska skrivas ut */
   .no-print,
   .site-header,
   .site-footer,
@@ -1405,25 +1287,48 @@ p { color: var(--text-soft); }
     padding-bottom: 8px;
   }
 
-  /* Två kolumner för uppgifter */
+  /* Två kolumner för uppgifter — flex istället för grid för att undvika
+     att margin/padding kollapsar mellan rader. */
   .problem-columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: row;
     gap: 0 32px;
-    align-items: start;
+    align-items: flex-start;
   }
 
   .problem-column {
+    flex: 1 1 50%;
     list-style: decimal;
     list-style-position: outside;
     padding-left: 24px;
     margin: 0;
+    display: flex;
+    flex-direction: column;
   }
 
+  /* Nollställ alla marginaler och padding på uppgiftsraderna så att
+     avståndet styrs helt av ::after-blocket nedan. */
   .problem-column > li {
+    margin: 0;
+    padding: 0;
+    padding-left: 8px;
     break-inside: avoid;
     page-break-inside: avoid;
-    margin-bottom: 200px;
+    display: block;
+  }
+
+  /* Skapa det faktiska tomma utrymmet efter varje uppgift.
+     Ett tomt block kan inte kollapsa och klipps inte bort vid
+     kolumnbrytning på samma sätt som margin-bottom. */
+  .problem-column > li::after {
+    content: "";
+    display: block;
+    height: 100px;
+  }
+
+  /* Sista uppgiften behöver inte extra utrymme under sig */
+  .problem-column > li:last-child::after {
+    height: 0;
   }
 
   /* Kort division */
@@ -1587,7 +1492,9 @@ p { color: var(--text-soft); }
   .key-levels li {
     font-size: 0.82rem;
   }
-    .glosa-item {
+
+  /* Glosor */
+  .glosa-item {
     font-size: 1rem;
     padding: 4px 0;
   }
