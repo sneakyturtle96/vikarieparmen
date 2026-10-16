@@ -2,7 +2,7 @@ export function renderHome(app) {
   app.innerHTML = `
     <section class="hero">
       <div class="container">
-        <h1>Mindre tid för förberedelser.<br>Mer tid på undervisning.</h1>
+        <h1>Mindre tid för förberedelser.<br>Mer tid för undervisning.</h1>
         <p class="lead">
           Lärarhjälpen är ett verktyg för dig som arbetar i svensk grundskola.
           Här kan du snabbt skapa färdiga uppgifter och lösningsförslag –
