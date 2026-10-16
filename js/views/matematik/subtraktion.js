@@ -424,6 +424,17 @@ function initLogic() {
     inner.appendChild(vertical);
     li.appendChild(inner);
 
+    // Tomma rader med faktiskt innehåll (icke-brytande mellanslag).
+    // Webbläsarens utskriftsmotor kan inte klippa bort element som
+    // innehåller text, även om texten är osynlig. Detta ger eleven
+    // plats att skriva sin uträkning under varje uppställning.
+    for (let i = 0; i < 4; i++) {
+      const spacer = document.createElement('div');
+      spacer.className = 'problem-spacer';
+      spacer.innerHTML = '&nbsp;';
+      li.appendChild(spacer);
+    }
+
     return li;
   }
 
